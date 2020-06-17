@@ -1,0 +1,15 @@
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="text-align: center">
+      <h1>Modulo de Doctores</h1>
+      <br>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio"  name="inlineRadioOptions" (click)="registrar()" id="inlineRadio1" value="1">
+        <label class="form-check-label" for="inlineRadio1">Registrar</label>
+      </div>      
+      <div *ngIf="radio==1" class="text-align: center">
+        <app-registrar-doctor></app-registrar-doctor>
+      </div>       
+    </div>
+  </div>
+</div>

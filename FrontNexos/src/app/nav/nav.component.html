@@ -1,0 +1,13 @@
+<nav class="navbar navbar-expand-md navbar-dark bg-primary">
+  <div class="container">
+    <a class="navbar-brand" [routerLink]="['/home']" >Nexos</a>
+    <ul  class="navbar-nav mr-auto">
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link" [routerLink]="['/CRUDPacientes']" >Módulo Pacientes</a>                 
+      </li>
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link" [routerLink]="['/CRUDDoctores']" >Módulo Doctores</a>
+      </li>     
+    </ul>    
+  </div>
+</nav>

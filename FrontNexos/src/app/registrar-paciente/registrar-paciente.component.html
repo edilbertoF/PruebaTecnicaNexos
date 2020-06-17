@@ -1,0 +1,92 @@
+<div class="row">
+  
+  <div class="col-sm-6">
+    <form [formGroup]="registerForm" (ngSubmit)="register()">
+      <h2 class="text-center text-primary">Registrar Pacientes</h2>
+      <hr>
+    
+      <div class="form-group">
+        <input type="text"
+          [ngClass]="{'is-invalid': registerForm.get('nombreCompleto').errors
+            && registerForm.get('nombreCompleto').touched}"
+          class="form-control"
+          formControlName="nombreCompleto"
+          placeholder="Nombre Completo">
+        <div class="invalid-feedback">Por favor ingrese su nombre completo.</div>
+      </div>
+    
+      <div class="form-group">
+        <input type="number" [ngClass]="{'is-invalid': registerForm.get('numSeguroSocial').errors
+          && registerForm.get('numSeguroSocial').touched}" class="form-control"
+          placeholder="Numero de seguro social" formControlName="numSeguroSocial">
+        <div class="invalid-feedback" *ngIf="registerForm.get('numSeguroSocial').touched
+          && registerForm.get('numSeguroSocial').hasError('required')">El número de seguro social es requerido</div>
+      </div>
+    
+      <div class="form-group">
+        <input type="text" [ngClass]="{'is-invalid': registerForm.get('codigoPostal').errors &&
+          registerForm.get('codigoPostal').touched}" class="form-control"
+          placeholder="Codigo Postal" formControlName="codigoPostal">
+        <div class="invalid-feedback" *ngIf="registerForm.get('codigoPostal').touched &&
+          registerForm.get('codigoPostal').hasError('required')">El código postal es requerido.</div>
+      </div>
+    
+      <div class="form-group">
+        <input type="text" [ngClass]="{'is-invalid': registerForm.get('telefono').errors &&
+          registerForm.get('telefono').touched}" class="form-control"
+          placeholder="Telefono" formControlName="telefono">
+        <div class="invalid-feedback" *ngIf="registerForm.get('telefono').touched
+          && registerForm.get('telefono').hasError('required')">El telefono es requerido.</div>
+      </div>
+    
+      <div class="form-group text-center">
+        <button class="btn btn-success" [disabled]="!registerForm.valid" type="submit">Registrar</button>
+        <button class="btn btn-default" type="button" (click)="cancel()">Cancelar</button>
+      </div> 
+    
+      <ng-template #myModalConf let-modal>
+    
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Registro exitoso</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="modal.close('Cerrado desde la ventana')"> 
+                <span aria-hidden="true">&times;</span>
+              </button>
+          </div>
+          <div class="modal-body">
+            Paciente guardado exitosamente
+          </div>
+          <div class="modal-footer">      
+            <button type="button" class="btn btn-primary" (click)="modal.close('Si')">Aceptar</button>
+          </div>
+        </div>
+      </ng-template>
+    </form>
+  </div>
+
+  <div class="col-sm-6 mt-5">
+    <table class="table table-striped" >
+      <thead>
+        <tr>
+          <th></th>          
+          <th scope="col">Nombre Completo</th>
+          <th scope="col">Especialidad</th>
+          <th scope="col">Numero Credencial</th>
+          <th scope="col">Hospital donde trabaja</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let doctor of doctores">
+          <td><input type="checkbox" id="idDoc" value="{{ doctor.idDoctor }}"
+              (click)="agregarQuitarSeleccion(doctor.idDoctor)"/></td>         
+          <td>{{ doctor.nombreCompleto }}</td>
+          <td>{{ doctor.especialidad }}</td>
+          <td>{{ doctor.numeroCredencial }}</td>
+          <td>{{ doctor.hospitalTrabaja }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
+</div>
+
